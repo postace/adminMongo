@@ -170,7 +170,7 @@ if(nconf.stores.app.get('app:context') !== undefined){
     app_context = '/' + nconf.stores.app.get('app:context');
 }
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(bodyParser.json({limit: '16mb'}));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
