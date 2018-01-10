@@ -108,7 +108,15 @@ exports.get_db_stats = function (mongo_db, db_name, cb){
                 });
             }, function (err){
                 if(err) console.error(err.message);
-                db_obj[db_name] = exports.order_object(coll_obj);
+                let filtered = {};
+                // Only get collections has more than 0 documents
+                _.forOwn(coll_obj, (value, key) => {
+                    if(value.Documents > 0){
+                        filtered[key] = value;
+                    }
+                });
+
+                db_obj[db_name] = exports.order_object(filtered);
                 cb(null, db_obj);
             });
         });
